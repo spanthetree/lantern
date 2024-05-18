@@ -8,7 +8,7 @@ import (
 )
 
 // get primary IP of the local machine
-func GetIP() (net.IP, error) {
+func GetIP() (string, error) {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
 		log.Fatal(err)
@@ -17,7 +17,8 @@ func GetIP() (net.IP, error) {
 
 	localAddr := conn.LocalAddr().(*net.UDPAddr)
 
-	return localAddr.IP, err
+	// return localAddr.IP, err
+	return localAddr.IP.String(), err
 }
 
 func GetFQDN() (string, error) {
